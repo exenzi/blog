@@ -1,0 +1,31 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import BlogHeader from '../components/BlogHeader.astro';
+import BlogPost from '../components/BlogPost.astro';
+
+
+const { content } = Astro.props;
+const { title, description, date, author, heroImage, permalink, alt } = content;
+
+const formatedDate = new Date(date).toLocaleDateString('ru-RU', {
+	day: 'numeric',
+	month: 'long',
+	year: 'numeric',
+})
+---
+
+<html lang={content.lang || 'ru'}>
+	<head>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-lucario.css"/>
+		<BaseHead {title} {description} {permalink} />
+	</head>
+
+	<body>
+		<BlogHeader />
+		<div class="wrapper">
+			<BlogPost {title} {author} {heroImage} date={formatedDate} {alt}>
+				<slot />
+			</BlogPost>
+		</div>
+	</body>
+</html>
