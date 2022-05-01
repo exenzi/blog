@@ -5,7 +5,7 @@ import BlogPost from '../components/BlogPost.astro';
 
 
 const { content } = Astro.props;
-const { title, description, date, author, heroImage, permalink, alt } = content;
+const { title, description, date, author, heroImage, alt } = content;
 
 const formatedDate = new Date(date).toLocaleDateString('ru-RU', {
 	day: 'numeric',
@@ -14,10 +14,10 @@ const formatedDate = new Date(date).toLocaleDateString('ru-RU', {
 })
 ---
 
-<html lang={content.lang || 'ru'}>
+<html lang={content.lang || 'ru'} class="theme-dark">
 	<head>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-lucario.css"/>
-		<BaseHead {title} {description} {permalink} />
+		<BaseHead {title} {description} />
 	</head>
 
 	<body>
